@@ -1,0 +1,225 @@
+// Write your styles here
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+$font-family: (
+  font-source-sans-pro: (
+    "Source Sans Pro",
+    sans-serif,
+  ),
+  font-hind: (
+    "Hind",
+    sans-serif,
+  ),
+  font-fresca: (
+    "Fresca",
+    sans-serif,
+  ),
+);
+
+@mixin button($btn_bg) {
+  background-color: $btn_bg;
+  color: #fff;
+
+  border: none;
+  border-radius: 2px;
+  font-size: 16px;
+  padding: 13px 35px;
+}
+
+@mixin link($size) {
+  font-size: $size;
+  color: #fff;
+}
+
+@mixin highlight($width, $height, $bottom, $left) {
+  content: "";
+  background-color: $highlight_word;
+  width: $width;
+  height: $height;
+  bottom: $bottom;
+  left: $left;
+  position: absolute;
+  z-index: -1;
+}
+
+body {
+  background: $bg_color;
+  color: $header_text_color;
+}
+
+.header {
+  background-image: $header_bg_img;
+  mask-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 50%;
+  font-family: map-get($font-family, font-source-sans-pro);
+  border-radius: 0 0 250px 0;
+  height: 712px;
+  padding: 20px 220px;
+
+  &_heading {
+    font-size: 66px;
+    font-weight: 800;
+    margin-top: 50px;
+    max-width: 600px;
+    word-wrap: break-word;
+    position: relative;
+    z-index: 1;
+  }
+
+  &_heading::after {
+    @include highlight(275px, 50px, 5px, 0);
+  }
+
+  &_text {
+    margin: 50px 0;
+    white-space: pre-line;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  &_button {
+    @include button($btn_bg);
+    margin-right: 150px;
+  }
+}
+
+.landing-logo {
+  display: flex;
+  text-align: center;
+}
+
+p {
+  margin-left: 15px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+span {
+  @extend .landing-logo;
+  font-size: 12px;
+}
+
+.login {
+  @include link(18px);
+}
+
+main {
+  margin: 0 auto;
+  width: 960px;
+  font-family: map-get($font-family, font-hind);
+}
+
+.section {
+  &_text {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    margin: 25px;
+    position: relative;
+    z-index: 1;
+  }
+
+  &_text::after {
+    @include highlight(130px, 35px, 5px, 465px);
+  }
+
+  &_card {
+    display: flex;
+    text-align: center;
+    background-color: $bg_card;
+    border-radius: 5px;
+    margin: 25px 0;
+    padding: 15px;
+
+    &_img {
+      border-radius: 5px;
+      height: 225px;
+    }
+
+    &_right_container {
+      color: rgb(233, 234, 235);
+      padding: 25px;
+    }
+
+    &_heading {
+      font-size: 22px;
+    }
+
+    &_text {
+      font-size: 12px;
+      font-weight: 400;
+      padding: 35px;
+      text-align: justify;
+    }
+  }
+
+  &_link {
+    @include link(14px);
+  }
+
+  &_banner {
+    display: flex;
+    justify-content: space-around;
+    background: linear-gradient(
+      to right,
+      $banner_gradint_left,
+      $banner_gradint_right
+    );
+    border-radius: 5px;
+    height: 100px;
+    position: relative;
+    bottom: -50px;
+
+    &_heading {
+      margin-top: 20px;
+      font-size: 22px;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+
+    &_heading::after {
+      @include highlight(45px, 30px, 5px, 92px);
+    }
+
+    &_text {
+      color: #fff;
+      font-size: 12px;
+      font-weight: 400;
+      color: #d0c1b1;
+    }
+
+    &_button {
+      @include button($btn_bg);
+      margin: 30px;
+    }
+  }
+}
+
+.footer {
+  background-color: $bg_card;
+  color: #fff;
+  font-family: map-get($font-family, font-fresca);
+
+  &-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 200px;
+    padding: 0 150px;
+  }
+
+  &_text {
+    font-size: 14px;
+    font-weight: 400;
+    color: #c8c9cb;
+    max-width: 300px;
+  }
+}
